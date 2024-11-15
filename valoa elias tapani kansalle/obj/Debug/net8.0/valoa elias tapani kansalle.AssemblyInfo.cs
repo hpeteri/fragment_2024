@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("valoa elias tapani kansalle")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21d91eae6af29eed5f9b040a94844363a7e59011")]
 [assembly: System.Reflection.AssemblyProductAttribute("valoa elias tapani kansalle")]
 [assembly: System.Reflection.AssemblyTitleAttribute("valoa elias tapani kansalle")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
