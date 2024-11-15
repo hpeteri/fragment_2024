@@ -105,7 +105,9 @@ tehdas rakennus, varasto, '
   - äänet - on, off, voimakkuus
 # Santeri
 - Player/enemy controller (periaattessa same asia pelaaja on vaan antaa kontrolleri antaa vain ohjat hiirelle jä näppikselle)
-- interactive 
+- interaktio
+- Collision systeemi kikkailu ihmettelyt
+  
 # Verneri
 
 # 1 copy pastaa kaikki assetit uudestaan ja uudestaan
