@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 
@@ -25,22 +26,17 @@ namespace valoa_elias_tapani_kansalle.entities {
             set { speed = value; }
         }
 
-        public BaseEntitity()
+        public virtual void LoadContent(ContentManager content)
         {
 
         }
 
-        public void LoadContent()
+        public virtual void Update(GameTime gameTime)
         {
 
         }
 
-        public void Update(GameTime gameTime)
-        {
-
-        }
-
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
 
         }

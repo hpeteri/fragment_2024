@@ -8,6 +8,16 @@ namespace valoa_elias_tapani_kansalle
         static KeyboardState currentKeyState;
         static KeyboardState previousKeyState;
 
+        public static KeyboardState CurrentKeyState
+        {
+            get { return currentKeyState; }
+        }
+
+        public static KeyboardState PreviousKeyState
+        {
+            get { return previousKeyState; }
+        }
+
         public static void Initialize(){
             previousKeyState = Keyboard.GetState();
             currentKeyState = Keyboard.GetState();

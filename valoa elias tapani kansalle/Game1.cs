@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using valoa_elias_tapani_kansalle.entities;
 
 namespace valoa_elias_tapani_kansalle
 {
@@ -16,6 +17,7 @@ namespace valoa_elias_tapani_kansalle
         private SpriteBatch _spriteBatch;
         private MainMenu _mainMenu;
         private ProgramMode _programMode;
+        private Player player;
 
         public Game1()
         {
@@ -23,6 +25,9 @@ namespace valoa_elias_tapani_kansalle
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
+            
+            player = new Player();
+            _graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -32,11 +37,14 @@ namespace valoa_elias_tapani_kansalle
             base.Initialize();
 
             Input.Initialize();
+            IsMouseVisible = false;
+            
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            player.LoadContent(Content);
 
         // TODO: use this.Content to load your game content here
         }
@@ -49,6 +57,7 @@ namespace valoa_elias_tapani_kansalle
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
 
+                    player.Update(gameTime);
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
                         Exit();
@@ -60,6 +69,8 @@ namespace valoa_elias_tapani_kansalle
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
                         _programMode = ProgramMode.PROGRAM_MODE_GAME;
+
+                        // Some player testing boilerplate 
                     }
                     break;
 
@@ -82,6 +93,10 @@ namespace valoa_elias_tapani_kansalle
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
+
+                    _spriteBatch.Begin(); 
+                    player.Draw(_spriteBatch);
+                    _spriteBatch.End();
 
                     break;
 
