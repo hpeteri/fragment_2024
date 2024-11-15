@@ -4,16 +4,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace valoa_elias_tapani_kansalle
 {
+    public enum ProgramMode
+    {
+        PROGRAM_MODE_MENU = 0,
+        PROGRAM_MODE_GAME = 1,
+    }
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private MainMenu _mainMenu;
+        private ProgramMode _programMode;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _programMode = ProgramMode.PROGRAM_MODE_MENU;
         }
 
         protected override void Initialize()
@@ -21,19 +30,44 @@ namespace valoa_elias_tapani_kansalle
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            Input.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+        // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            Input.Update();
+
+            switch (_programMode)
+            {
+                case ProgramMode.PROGRAM_MODE_GAME:
+
+                    if (Input.IsKeyPressed(Keys.Escape))
+                    {
+                        Exit();
+                    }
+                    break;
+
+                case ProgramMode.PROGRAM_MODE_MENU:
+
+                    if (Input.IsKeyPressed(Keys.Escape))
+                    {
+                        _programMode = ProgramMode.PROGRAM_MODE_GAME;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+
 
             // TODO: Add your update logic here
 
@@ -43,6 +77,21 @@ namespace valoa_elias_tapani_kansalle
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            switch (_programMode)
+            {
+                case ProgramMode.PROGRAM_MODE_GAME:
+                    GraphicsDevice.Clear(Color.Cyan);
+
+                    break;
+
+                case ProgramMode.PROGRAM_MODE_MENU:
+                    GraphicsDevice.Clear(Color.Brown);
+                    break;
+
+                default:
+                    break;
+            }
 
             // TODO: Add your drawing code here
 

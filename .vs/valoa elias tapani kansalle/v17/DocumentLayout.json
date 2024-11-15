@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|c:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|solutionrelative:valoa elias tapani kansalle\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|c:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\menu\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|solutionrelative:valoa elias tapani kansalle\\menu\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|c:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\input\\input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD1B520B-04C2-4D34-B136-FAE3956F17C7}|valoa elias tapani kansalle\\valoa elias tapani kansalle.csproj|solutionrelative:valoa elias tapani kansalle\\input\\input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Input.cs",
+              "DocumentMoniker": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\input\\Input.cs",
+              "RelativeDocumentMoniker": "valoa elias tapani kansalle\\input\\Input.cs",
+              "ToolTip": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\input\\Input.cs",
+              "RelativeToolTip": "valoa elias tapani kansalle\\input\\Input.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T19:37:15.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\Game1.cs",
+              "RelativeDocumentMoniker": "valoa elias tapani kansalle\\Game1.cs",
+              "ToolTip": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\Game1.cs*",
+              "RelativeToolTip": "valoa elias tapani kansalle\\Game1.cs*",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowEgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T19:19:59.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainMenu.cs",
+              "DocumentMoniker": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\menu\\MainMenu.cs",
+              "RelativeDocumentMoniker": "valoa elias tapani kansalle\\menu\\MainMenu.cs",
+              "ToolTip": "C:\\workspace\\fragment_2024\\valoa elias tapani kansalle\\valoa elias tapani kansalle\\menu\\MainMenu.cs",
+              "RelativeToolTip": "valoa elias tapani kansalle\\menu\\MainMenu.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T19:19:54.619Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
