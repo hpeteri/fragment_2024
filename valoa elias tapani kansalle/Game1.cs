@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,15 +15,17 @@ namespace valoa_elias_tapani_kansalle
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private MainMenu _mainMenu;
         private ProgramMode _programMode;
+        private MainMenu _mainMenu;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
+            _mainMenu = new MainMenu(Content);
         }
 
         protected override void Initialize()
@@ -87,6 +90,7 @@ namespace valoa_elias_tapani_kansalle
 
                 case ProgramMode.PROGRAM_MODE_MENU:
                     GraphicsDevice.Clear(Color.Brown);
+                    _mainMenu.Draw(GraphicsDevice, _spriteBatch);
                     break;
 
                 default:
