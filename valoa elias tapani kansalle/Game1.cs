@@ -36,6 +36,7 @@ namespace valoa_elias_tapani_kansalle
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
 
             _mainMenu = new MainMenu();
+            level = new Level(fileStream, Services);
             player = new Player();
 
             // Load level
