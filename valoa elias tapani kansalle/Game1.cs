@@ -39,7 +39,7 @@ namespace valoa_elias_tapani_kansalle
             player = new Player();
 
             // Load level
-            string levelPath = string.Format("Content/levels/level1.txt");
+            string levelPath = string.Format("Content/levels/level2.txt");
             fileStream = TitleContainer.OpenStream(levelPath);
             level = new Level(fileStream, Services);
 
@@ -63,6 +63,7 @@ namespace valoa_elias_tapani_kansalle
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(Content);
             _mainMenu.LoadContent(Content);
+            level.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -116,7 +117,7 @@ namespace valoa_elias_tapani_kansalle
                     GraphicsDevice.Clear(Color.Cyan);
                     
                     player.Draw(_spriteBatch);
-                    //level.Draw(_spriteBatch);
+                    level.Draw(_spriteBatch);
 
                     break;
 

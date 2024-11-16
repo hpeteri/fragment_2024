@@ -41,7 +41,13 @@ namespace valoa_elias_tapani_kansalle.entities
             loadTiles(fileStream);
         }
         
-        
+        // Load content
+        public void LoadContent(ContentManager content)
+        {
+            // Textures
+            tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
+            tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
+        }
         
         // Load tiles
         private void loadTiles(Stream fileStream)
@@ -76,9 +82,7 @@ namespace valoa_elias_tapani_kansalle.entities
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Textures
-            tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
-            tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
+           
 
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
