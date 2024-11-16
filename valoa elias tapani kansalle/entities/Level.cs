@@ -37,8 +37,7 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             // Load textures
             content = new ContentManager(serviceProvider, "Content");
-            tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
-            tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
+            
             loadTiles(fileStream);
         }
         
@@ -71,13 +70,16 @@ namespace valoa_elias_tapani_kansalle.entities
                     tiles[i,j] = line[j];
                 }
             }
-            // breakpoint
 
         }
         
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
+            // Textures
+            tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
+            tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
+
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)

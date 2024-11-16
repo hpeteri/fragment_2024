@@ -36,12 +36,12 @@ namespace valoa_elias_tapani_kansalle
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
 
             _mainMenu = new MainMenu();
-            level = new Level(fileStream, Services);
             player = new Player();
 
             // Load level
             string levelPath = string.Format("Content/levels/level1.txt");
-            fileStream = TitleContainer.OpenStream(levelPath);    
+            fileStream = TitleContainer.OpenStream(levelPath);
+            level = new Level(fileStream, Services);
 
             // Set fullscreen
             _graphics.IsFullScreen = false;
