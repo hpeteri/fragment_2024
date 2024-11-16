@@ -1,5 +1,11 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+
+// NOTE: This is base class for controlling entities. Goal is to use this class 
+// possible use cases could be Camera, Player, Enemy or Static object
+
 
 namespace valoa_elias_tapani_kansalle.entities {
     public class BaseEntitity {
@@ -20,17 +26,17 @@ namespace valoa_elias_tapani_kansalle.entities {
             set { speed = value; }
         }
 
-        public BaseEntitity()
+        public virtual void LoadContent(ContentManager content)
         {
 
         }
 
-        public void Update()
+        public virtual void Update(GameTime gameTime)
         {
 
         }
 
-        public void Draw()
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
 
         }

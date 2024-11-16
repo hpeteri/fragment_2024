@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using valoa_elias_tapani_kansalle.entities;
 
 namespace valoa_elias_tapani_kansalle
 {
@@ -16,7 +17,9 @@ namespace valoa_elias_tapani_kansalle
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ProgramMode _programMode;
+
         private MainMenu _mainMenu;
+        private Player player;
 
         public Game1()
         {
@@ -24,10 +27,12 @@ namespace valoa_elias_tapani_kansalle
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            Content.Load<SpriteFont>("MenuFont");
-
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
-            _mainMenu = new MainMenu(Content);
+
+            _mainMenu = new MainMenu();
+            player = new Player();
+            //_graphics.IsFullScreen = true;
+
         }
 
         protected override void Initialize()
@@ -37,11 +42,15 @@ namespace valoa_elias_tapani_kansalle
             base.Initialize();
 
             Input.Initialize();
+            IsMouseVisible = false;
+            
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            player.LoadContent(Content);
+            _mainMenu.LoadContent(Content);
 
         // TODO: use this.Content to load your game content here
         }
@@ -54,6 +63,7 @@ namespace valoa_elias_tapani_kansalle
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
 
+                    player.Update(gameTime);
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
                         Exit();
@@ -65,6 +75,8 @@ namespace valoa_elias_tapani_kansalle
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
                         _programMode = ProgramMode.PROGRAM_MODE_GAME;
+
+                        // Some player testing boilerplate 
                     }
                     break;
 
@@ -83,23 +95,29 @@ namespace valoa_elias_tapani_kansalle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _spriteBatch.Begin();
+            
             switch (_programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
 
+                    player.Draw(_spriteBatch);
+
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
                     GraphicsDevice.Clear(Color.Brown);
+
                     _mainMenu.Draw(GraphicsDevice, _spriteBatch);
+
                     break;
 
                 default:
                     break;
             }
-
-            // TODO: Add your drawing code here
+            
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -14,7 +14,12 @@ namespace valoa_elias_tapani_kansalle
     {
         private SpriteFont font1;
 
-        public MainMenu(ContentManager content)
+        public MainMenu()
+        {
+        }
+
+        public void LoadContent(
+            ContentManager content)
         {
             font1 = content.Load<SpriteFont>("MenuFont");
         }
@@ -41,14 +46,12 @@ namespace valoa_elias_tapani_kansalle
             spriteBatch.DrawString(font1,
                                    output,
                                    fontPos,
-                                   Color.LightGreen,
+                                   Color.Black,
                                    0,
                                    FontOrigin,
-                                   1.0f,
+                                   3.0f,
                                    SpriteEffects.None,
                                    0.5f);
-
-            spriteBatch.End();
         }
     }
 }
