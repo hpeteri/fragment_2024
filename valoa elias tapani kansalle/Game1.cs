@@ -65,8 +65,7 @@ namespace valoa_elias_tapani_kansalle
 
             base.Initialize();
 
-            Input.Initialize();
-            IsMouseVisible = false;            
+            Input.Initialize();           
         }
 
         protected override void LoadContent()
