@@ -11,6 +11,8 @@ namespace valoa_elias_tapani_kansalle.entities
     { 
         private Texture2D playerSprite;
         private CollisionShapeRectangle collisionShape;
+        private Texture2D temp;
+
         public Vector2 Velocity { get; private set; }
 
         // Animation
@@ -74,6 +76,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void LoadContent(ContentManager content)
         {
             PlayerSprite = content.Load<Texture2D>("sprites/lamp_walk_bw");
+            temp = content.Load<Texture2D>("ball");
         }
 
         public override void Update(GameTime gameTime)
@@ -121,12 +124,14 @@ namespace valoa_elias_tapani_kansalle.entities
             MouseState mouseState = Mouse.GetState();
             Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
             Vector2 playerFacingDirection = Vector2.Normalize(mousePosition - Position);
+
+
             spriteBatch.Draw(playerSprite,
                              Position,
                              sourceRectangle,
                              Color.White,
-                             (float) System.Math.Atan2(playerFacingDirection.Y, playerFacingDirection.X),
-                             Vector2.Zero,
+                             (float) System.Math.Atan2(playerFacingDirection.Y, playerFacingDirection.X) + (float)System.Math.PI / 2.0f,
+                             new Vector2(64, 64),
                              Vector2.One,
                              SpriteEffects.None,
                              EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
