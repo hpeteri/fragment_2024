@@ -1,11 +1,5 @@
 .vs/
 valoa elias tapani kansalle/bin
 valoa elias tapani kansalle/obj
-valoa elias tapani kansalle/Content/bin/DesktopGL/MenuFont.xnb
-valoa elias tapani kansalle/Content/obj/DesktopGL/net8.0/Content/.mgcontent
-valoa elias tapani kansalle/Content/obj/DesktopGL/net8.0/Content/MenuFont.mgcontent
-valoa elias tapani kansalle/Content/bin/DesktopGL/Content/MenuFont.xnb
-*.xnb
-*.mgcontent
-*.mgstats
-
+valoa elias tapani kansalle/Content/bin/*
+valoa elias tapani kansalle/Content/obj/*
