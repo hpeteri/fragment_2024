@@ -24,6 +24,8 @@ namespace valoa_elias_tapani_kansalle
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
+            Content.Load<SpriteFont>("MenuFont");
+
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
             _mainMenu = new MainMenu(Content);
         }
