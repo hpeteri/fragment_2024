@@ -58,6 +58,7 @@ namespace valoa_elias_tapani_kansalle
         protected override void Update(GameTime gameTime)
         {
             Input.Update();
+            _mainMenu.Update(gameTime);
 
             switch (_programMode)
             {
