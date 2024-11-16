@@ -32,7 +32,7 @@ namespace valoa_elias_tapani_kansalle
                                 return;
                             }
                         ),
-                        new MenuItem("Settings",
+                        new MenuItem("Settings [not implemented 8==D~]",
                                      (GameState gameState) =>
                                      {
                                          return;
