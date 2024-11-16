@@ -7,7 +7,8 @@ namespace valoa_elias_tapani_kansalle
 {
     public enum MainMenuMode {
         MAIN_MENU_MODE_MAIN = 0,
-        MAIN_MENU_MODE_SETTINGS = 0,
+        MAIN_MENU_MODE_SETTINGS = 1,
+        MAIN_MENU_MODE_PAUSED = 2,
     }
 
     public class MainMenu
@@ -16,15 +17,60 @@ namespace valoa_elias_tapani_kansalle
         private int        _menuIndex;
         private MenuItem []  _menuItems;
 
-        public MainMenu()
+        public void SetMenu(MainMenuMode mode)
         {
             _menuIndex = 0;
 
-            _menuItems = new MenuItem[] {
-                new MenuItem("Play", 1.0f),
-                new MenuItem("Settings", 1.0f),
-                new MenuItem("Quit", 1.0f)
-            };
+            switch (mode)
+            {
+                case MainMenuMode.MAIN_MENU_MODE_MAIN:
+                    _menuItems = new MenuItem[] {
+                        new MenuItem(
+                            "Play",
+                            (GameState gamestate) => {
+                                gamestate.programMode = ProgramMode.PROGRAM_MODE_GAME;
+                                return;
+                            }
+                        ),
+                        new MenuItem("Settings",
+                                     (GameState gameState) =>
+                                     {
+                                         return;
+                                     }),
+                        new MenuItem(
+                            "Quit",
+                            (GameState gamestate) => {
+                                gamestate.programMode = ProgramMode.PROGRAM_MODE_SHOULD_QUIT;
+                                return;
+                            })
+                    };
+
+                    break;
+
+                default:
+                    _menuItems = new MenuItem[] {
+                        new MenuItem(
+                            "Continue",
+                            (GameState gamestate) => {
+                                gamestate.programMode = ProgramMode.PROGRAM_MODE_GAME;
+                                return;
+                            }
+                        ),
+                        new MenuItem(
+                            "Quit",
+                            (GameState gamestate) => {
+                                gamestate.programMode = ProgramMode.PROGRAM_MODE_SHOULD_QUIT;
+                                return;
+                            })
+                    };
+
+                    break;
+                    
+            }
+        }        
+        public MainMenu()
+        {
+            SetMenu(MainMenuMode.MAIN_MENU_MODE_MAIN);
         }
 
         public void LoadContent(
@@ -34,9 +80,10 @@ namespace valoa_elias_tapani_kansalle
         }
 
         public void Update(
-            GameTime gameTime)
+            GameTime gameTime,
+            GameState gameState)
         {
-
+            
             if (Input.IsKeyPressed(Keys.W))
             {
                 _menuIndex += _menuItems.Length - 1;
@@ -49,6 +96,7 @@ namespace valoa_elias_tapani_kansalle
 
             if (Input.IsKeyPressed(Keys.Space))
             {
+                _menuItems[_menuIndex].OnPress(gameState);
             }
 
             _menuIndex = _menuIndex % _menuItems.Length;

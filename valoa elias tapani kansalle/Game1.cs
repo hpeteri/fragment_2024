@@ -14,14 +14,24 @@ namespace valoa_elias_tapani_kansalle
     {
         PROGRAM_MODE_MENU = 0,
         PROGRAM_MODE_GAME = 1,
+        PROGRAM_MODE_SHOULD_QUIT = 2,
     }
 
+    public class GameState
+    {
+        public ProgramMode programMode;
+
+        public GameState()
+        {
+            this.programMode = ProgramMode.PROGRAM_MODE_MENU;
+        }
+    }
+                                              
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private ProgramMode _programMode;
-
+        private GameState _gameState;
         private MainMenu _mainMenu;
         private Player player;
         private Level level;
@@ -33,7 +43,7 @@ namespace valoa_elias_tapani_kansalle
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _programMode = ProgramMode.PROGRAM_MODE_MENU;
+            _gameState = new GameState();
 
             _mainMenu = new MainMenu();
             player = new Player();
@@ -71,24 +81,28 @@ namespace valoa_elias_tapani_kansalle
         protected override void Update(GameTime gameTime)
         {
             Input.Update();
-            _mainMenu.Update(gameTime);
+            
 
-            switch (_programMode)
+            switch (_gameState.programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
 
                     player.Update(gameTime);
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
-                        Exit();
+                        _gameState.programMode = ProgramMode.PROGRAM_MODE_MENU;
+
+                        _mainMenu.SetMenu(MainMenuMode.MAIN_MENU_MODE_PAUSED);
                     }
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
 
+                    _mainMenu.Update(gameTime, _gameState);
+                                
                     if (Input.IsKeyPressed(Keys.Escape))
                     {
-                        _programMode = ProgramMode.PROGRAM_MODE_GAME;
+                        _gameState.programMode = ProgramMode.PROGRAM_MODE_GAME;
 
                         // Some player testing boilerplate 
                     }
@@ -100,6 +114,11 @@ namespace valoa_elias_tapani_kansalle
 
 
 
+            if (_gameState.programMode == ProgramMode.PROGRAM_MODE_SHOULD_QUIT)
+            {
+                Exit();
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -110,7 +129,7 @@ namespace valoa_elias_tapani_kansalle
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
-            switch (_programMode)
+            switch (_gameState.programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
