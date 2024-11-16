@@ -4,11 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+<<<<<<< Updated upstream
     <File>C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/MenuFont.spritefont</File>
     <File>C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/sprites/ball.png</File>
+=======
+    <File>C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/MenuFont.spritefont</File>
+    <File>C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/sprites/ball.png</File>
+    <File>C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/sprites/TestSquareBlue.png</File>
+    <File>C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/sprites/TestSquareRed.png</File>
+>>>>>>> Stashed changes
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
     <File>ball.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
