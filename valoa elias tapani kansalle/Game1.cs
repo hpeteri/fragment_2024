@@ -39,7 +39,7 @@ namespace valoa_elias_tapani_kansalle
             player = new Player();
 
             // Load level
-            string levelPath = string.Format("Content/levels/level2.txt");
+            string levelPath = string.Format("Content/levels/level1.txt");
             fileStream = TitleContainer.OpenStream(levelPath);
             level = new Level(fileStream, Services);
 
