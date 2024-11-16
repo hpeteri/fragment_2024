@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/sannk/Documents/fragment_2024/valoa elias tapani kansalle/Content/MenuFont.spritefont</File>
-    <File>C:/Users/sannk/Documents/fragment_2024/valoa elias tapani kansalle/Content/sprites/ball.png</File>
+    <File>C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/MenuFont.spritefont</File>
+    <File>C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/sprites/ball.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

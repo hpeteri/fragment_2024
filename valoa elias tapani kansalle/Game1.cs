@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using valoa_elias_tapani_kansalle.entities;
@@ -15,8 +16,9 @@ namespace valoa_elias_tapani_kansalle
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private MainMenu _mainMenu;
         private ProgramMode _programMode;
+
+        private MainMenu _mainMenu;
         private Player player;
 
         public Game1()
@@ -24,10 +26,13 @@ namespace valoa_elias_tapani_kansalle
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
             _programMode = ProgramMode.PROGRAM_MODE_MENU;
-            
+
+            _mainMenu = new MainMenu();
             player = new Player();
-            _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
+
         }
 
         protected override void Initialize()
@@ -45,6 +50,7 @@ namespace valoa_elias_tapani_kansalle
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(Content);
+            _mainMenu.LoadContent(Content);
 
         // TODO: use this.Content to load your game content here
         }
@@ -89,26 +95,29 @@ namespace valoa_elias_tapani_kansalle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _spriteBatch.Begin();
+            
             switch (_programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
 
-                    _spriteBatch.Begin(); 
                     player.Draw(_spriteBatch);
-                    _spriteBatch.End();
 
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
                     GraphicsDevice.Clear(Color.Brown);
+
+                    _mainMenu.Draw(GraphicsDevice, _spriteBatch);
+
                     break;
 
                 default:
                     break;
             }
-
-            // TODO: Add your drawing code here
+            
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
