@@ -89,7 +89,7 @@ namespace valoa_elias_tapani_kansalle.entities
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
-                    if (tiles[i,j] != 0)
+                    if (tiles[i,j] != '0')
                     {
                         spriteBatch.Draw(tileSpriteBlue, position, Color.White);
                     } else
