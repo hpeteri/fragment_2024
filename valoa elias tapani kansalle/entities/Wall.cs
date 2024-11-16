@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Numerics;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace valoa_elias_tapani_kansalle.entities
 {
     public class Wall : GameObject
     {
-        public Microsoft.Xna.Framework.Vector2 position;
+        public Vector2 position;
         public ContentManager content;
         private Texture2D tileSpriteRed;
         public Texture2D TileSpriteRed
@@ -17,7 +15,7 @@ namespace valoa_elias_tapani_kansalle.entities
             set { tileSpriteRed = value; }
         }
 
-        public Wall(Microsoft.Xna.Framework.Vector2 pos, int width, int height)
+        public Wall(Vector2 pos, int width, int height)
         {
             position = pos;
         }

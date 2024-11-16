@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace valoa_elias_tapani_kansalle.entities
 {
@@ -8,9 +9,9 @@ namespace valoa_elias_tapani_kansalle.entities
         // Things here :)
         private Player player;
         private float interactRange = 64;
-        private float interactAngle = 0.7f;
+        private float interactAngle = (float) MathHelper.ToRadians(45f);
 
-        private bool canInteract()
+        public bool canInteract(Player player)
         {
             // Player is close enough
             float distance = Vector2.Distance(player.Position, this.Position);
@@ -18,27 +19,25 @@ namespace valoa_elias_tapani_kansalle.entities
                 return false;
 
             // Player is facing the right direction
-            MouseState mouseState = Mouse.GetState();
-            Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
+            Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             Vector2 playerFacingDirection = Vector2.Normalize(mousePosition - player.Position);
+
+            // Calculate direction from player to this interactable
             Vector2 directionToItem = Vector2.Normalize(this.Position - player.Position);
 
-            // Check if the player is facing this using a dot product
-            if (Vector2.Dot(playerFacingDirection, directionToItem) < interactAngle)
+            // Check if player is facing the interactable
+            float dotProduct = Vector2.Dot(playerFacingDirection, directionToItem);
+
+            // interactAngle should be the cosine of the allowed angle (e.g., cos(45°) ~ 0.707)
+            if (dotProduct > interactAngle)
                 return false;
-            
+
             return true;
         }
 
-        public override void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Player player)
         {
-            base.Update(gameTime);
-
-            if (canInteract() && Input.IsKeyDown(Keys.F))
-            {
-                // Interact
-                System.Console.WriteLine("jelqKING");
-            }
+            // Virtual
         }
     }
 }

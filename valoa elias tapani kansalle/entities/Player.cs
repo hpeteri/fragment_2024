@@ -35,7 +35,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public Player()
         {
             Speed = 300f;
-            Position = new Vector2(0f, 0f);
+            Position = new Vector2(300f, 300f);
             collisionShape = new CollisionShapeRectangle(new Rectangle(64, 64, 64, 64));
             this.frameWidth = 128;
             this.frameHeight = 128;

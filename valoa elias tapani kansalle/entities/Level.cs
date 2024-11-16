@@ -19,6 +19,7 @@ namespace valoa_elias_tapani_kansalle.entities
         private char[,] tiles;
         private int gridSize = 64;
         private Wall[] walls;
+        private Interactable[] interactables;
         public ContentManager content;
         private Texture2D tileSpriteBlue;
         private Texture2D tileSpriteRed;
@@ -38,10 +39,10 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             // Load textures
             content = new ContentManager(serviceProvider, "Content");
-            
+
             loadTiles(fileStream);
         }
-        
+
         // Load content
         public void LoadContent(ContentManager content)
         {
@@ -49,11 +50,11 @@ namespace valoa_elias_tapani_kansalle.entities
             tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
             tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
         }
-        
+
         // Load tiles
         private void loadTiles(Stream fileStream)
         {
-            
+
             List<string> lines = new List<string>();
             using (StreamReader reader = new StreamReader(fileStream))
             {
@@ -74,22 +75,24 @@ namespace valoa_elias_tapani_kansalle.entities
                 char[] line = lines[i].ToCharArray();
                 for (int j = 0; j < line.Length; j++)
                 {
-                    tiles[i,j] = line[j];
+                    tiles[i, j] = line[j];
                 }
             }
         }
-        
+
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
             walls = new Wall[tiles.GetLength(0) * tiles.GetLength(1)];
-            int index = 0;
+            interactables = new Interactable[tiles.GetLength(0) * tiles.GetLength(1)];
+            int wallsIndex = 0;
+            int interactablesIndex = 0;
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
-                    if (tiles[i,j] != '0')
+                    if (tiles[i, j] == '1')
                     {
                         spriteBatch.Draw(tileSpriteBlue,
                                          position,
@@ -100,11 +103,27 @@ namespace valoa_elias_tapani_kansalle.entities
                                          Vector2.One,
                                          SpriteEffects.None,
                                          EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
-                    } else
+                    }
+                    else if (tiles[i, j] == '0')
                     {
                         // Add walls
-                        walls[index] = new Wall(position, gridSize, gridSize);
-                        index += 1;
+                        walls[wallsIndex] = new Wall(position, gridSize, gridSize);
+                        wallsIndex += 1;
+                    }
+                    else if (tiles[i, j] == 'i')
+                    {
+                        // Add interactables
+                        spriteBatch.Draw(tileSpriteBlue,
+                                         position,
+                                         null,
+                                         Color.White,
+                                         0,
+                                         Vector2.Zero,
+                                         Vector2.One,
+                                         SpriteEffects.None,
+                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
+                        interactables[interactablesIndex] = new Screwdriver(position);
+                        interactablesIndex += 1;
                     }
                 }
 
@@ -116,7 +135,37 @@ namespace valoa_elias_tapani_kansalle.entities
                 {
                     wall.LoadContent(content);
                     wall.Draw(spriteBatch);
-                } else
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            // Draw items
+            foreach (Interactable item in interactables)
+            {
+                if (item != null)
+                {
+                    item.LoadContent(content);
+                    item.Draw(spriteBatch);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        public void Update(GameTime gameTime, Player player)
+        {
+            foreach (Interactable item in interactables)
+            {
+                if (item != null)
+                {
+                    item.Update(gameTime, player);
+                }
+                else
                 {
                     break;
                 }

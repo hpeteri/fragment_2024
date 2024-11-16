@@ -44,6 +44,18 @@
 /processorParam:TextureFormat=Color
 /build:sprites/lamp_walk_bw.png
 
+#begin sprites/screwdriver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/screwdriver.png
+
 #begin sprites/TestSquareBlue.png
 /importer:TextureImporter
 /processor:TextureProcessor

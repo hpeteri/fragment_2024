@@ -97,6 +97,8 @@ namespace valoa_elias_tapani_kansalle
 
                         _mainMenu.SetMenu(MainMenuMode.MAIN_MENU_MODE_PAUSED);
                     }
+
+                    level.Update(gameTime, player);
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
