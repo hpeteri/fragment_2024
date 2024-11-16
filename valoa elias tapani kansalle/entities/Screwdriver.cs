@@ -28,14 +28,14 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(screwdriver,
-                                         Position,
-                                         null,
-                                         Color.White,
-                                         0,
-                                         new Vector2(-16, -16),
-                                         Vector2.One,
-                                         SpriteEffects.None,
-                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
+                             Position,
+                             null,
+                             Color.White,
+                             0,
+                             new Vector2(16, 16),
+                             new Vector2(2, 2),
+                             SpriteEffects.None,
+                             EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
         }
 
         public override void Update(GameTime gameTime, Player player)
@@ -73,7 +73,6 @@ namespace valoa_elias_tapani_kansalle.entities
                 if (Input.IsKeyPressed(Keys.G))
                 {
                     System.Diagnostics.Debug.WriteLine("Dropping");
-                    Position = player.Position;
                     attachToPlayer = false;
                 }
             }

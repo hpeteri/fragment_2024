@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using System.IO.Pipes;
 
 // !!! WORK IN PROGRESS !!!
 // This is a base class for a level
@@ -39,13 +40,12 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             // Load textures
             content = new ContentManager(serviceProvider, "Content");
-
             loadTiles(fileStream);
         }
 
         // Load content
         public void LoadContent(ContentManager content)
-        {
+        { 
             // Textures
             tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
             tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
@@ -78,13 +78,42 @@ namespace valoa_elias_tapani_kansalle.entities
                     tiles[i, j] = line[j];
                 }
             }
+
+
+            interactables = new Interactable[tiles.GetLength(0) * tiles.GetLength(1)];
+            walls = new Wall[tiles.GetLength(0) * tiles.GetLength(1)];
+            
+            int interactablesIndex = 0;
+            int wallsIndex = 0;
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    
+                    Vector2 position = new Vector2(i * gridSize, j * gridSize); 
+                    if (tiles[i, j] == 'i')
+                    {
+                        // Add interactables
+                        Screwdriver screwDriver = new Screwdriver(position);
+                        screwDriver.LoadContent(content);
+                        interactables[interactablesIndex] = screwDriver;
+                        interactablesIndex += 1;
+                    }
+                    else if (tiles[i, j] == '0')
+                    {
+                        // Add walls
+                        walls[wallsIndex] = new Wall(position, gridSize, gridSize);
+                        
+                        walls[wallsIndex].LoadContent(content);
+                        wallsIndex += 1;
+                    }
+                }
+            }
         }
 
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
-            walls = new Wall[tiles.GetLength(0) * tiles.GetLength(1)];
-            interactables = new Interactable[tiles.GetLength(0) * tiles.GetLength(1)];
             int wallsIndex = 0;
             int interactablesIndex = 0;
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -104,12 +133,6 @@ namespace valoa_elias_tapani_kansalle.entities
                                          SpriteEffects.None,
                                          EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
                     }
-                    else if (tiles[i, j] == '0')
-                    {
-                        // Add walls
-                        walls[wallsIndex] = new Wall(position, gridSize, gridSize);
-                        wallsIndex += 1;
-                    }
                     else if (tiles[i, j] == 'i')
                     {
                         // Add interactables
@@ -122,18 +145,16 @@ namespace valoa_elias_tapani_kansalle.entities
                                          Vector2.One,
                                          SpriteEffects.None,
                                          EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
-                        interactables[interactablesIndex] = new Screwdriver(position);
-                        interactablesIndex += 1;
                     }
                 }
 
             }
+
             // Draw walls
             foreach (Wall wall in walls)
             {
                 if (wall != null)
                 {
-                    wall.LoadContent(content);
                     wall.Draw(spriteBatch);
                 }
                 else
@@ -147,7 +168,6 @@ namespace valoa_elias_tapani_kansalle.entities
             {
                 if (item != null)
                 {
-                    item.LoadContent(content);
                     item.Draw(spriteBatch);
                 }
                 else
