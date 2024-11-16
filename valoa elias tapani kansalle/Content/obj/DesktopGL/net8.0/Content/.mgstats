@@ -1,3 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/MenuFont.spritefont","C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/bin/DesktopGL/Content/MenuFont.xnb","FontDescriptionProcessor","SpriteFontContent",2082,21538,0.4245766
-"C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/sprites/ball.png","C:/workspace/fragment_2024/valoa elias tapani kansalle/valoa elias tapani kansalle/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.1345079
+<<<<<<< Updated upstream
+=======
+"C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/MenuFont.spritefont","C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/bin/DesktopGL/Content/MenuFont.xnb","FontDescriptionProcessor","SpriteFontContent",2022,21538,0.190058
+"C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/sprites/ball.png","C:/Users/Verneri/Documents/GameJelqings/fragment_2024/valoa elias tapani kansalle/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.0105157
+>>>>>>> Stashed changes

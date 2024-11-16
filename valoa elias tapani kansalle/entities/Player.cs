@@ -1,9 +1,9 @@
-using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using valoa_elias_tapani_kansalle;
 using Microsoft.Xna.Framework.Input;
+
+using valoa_elias_tapani_kansalle.collision;
 using System;
 
 namespace valoa_elias_tapani_kansalle.entities
@@ -11,6 +11,7 @@ namespace valoa_elias_tapani_kansalle.entities
     public class Player : BaseEntitity
     { 
         private Texture2D playerSprite;
+        private CollisionShapeRectangle collisionShape;
 
         public Texture2D PlayerSprite
         {
@@ -22,6 +23,7 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             Speed = 300f;
             Position = new Vector2(0f, 0f);
+            collisionShape = new CollisionShapeRectangle(new Rectangle(64, 64, 64, 64));
         }
 
 
@@ -65,7 +67,7 @@ namespace valoa_elias_tapani_kansalle.entities
 
             Position += GetMovementDirection() * updatedSpeed;
 
-            Console.WriteLine(Position); 
+
             
         }
 
