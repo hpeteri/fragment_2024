@@ -108,16 +108,15 @@ namespace valoa_elias_tapani_kansalle
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack);
             switch (_programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
                     
-                    player.Draw(_spriteBatch);
                     level.Draw(_spriteBatch);
+                    player.Draw(_spriteBatch);
 
                     break;
 

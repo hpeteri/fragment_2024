@@ -47,6 +47,10 @@ namespace valoa_elias_tapani_kansalle
                 _menuIndex ++;
             }
 
+            if (Input.IsKeyPressed(Keys.Space))
+            {
+            }
+
             _menuIndex = _menuIndex % _menuItems.Length;
 
             for (int i = 0; i < _menuItems.Length; i++)

@@ -74,8 +74,15 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
-            spriteBatch.Draw(PlayerSprite, Position, Color.White);
+            spriteBatch.Draw(playerSprite,
+                             Position,
+                             null,
+                             Color.White,
+                             0,
+                             Vector2.Zero,
+                             Vector2.One,
+                             SpriteEffects.None,
+                             EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
 
         }
 

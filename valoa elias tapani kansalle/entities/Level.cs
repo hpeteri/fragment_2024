@@ -76,14 +76,11 @@ namespace valoa_elias_tapani_kansalle.entities
                     tiles[i,j] = line[j];
                 }
             }
-
         }
         
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
-           
-
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
@@ -91,10 +88,26 @@ namespace valoa_elias_tapani_kansalle.entities
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
                     if (tiles[i,j] != '0')
                     {
-                        spriteBatch.Draw(tileSpriteBlue, position, Color.White);
+                        spriteBatch.Draw(tileSpriteBlue,
+                                         position,
+                                         null,
+                                         Color.White,
+                                         0,
+                                         Vector2.Zero,
+                                         Vector2.One,
+                                         SpriteEffects.None,
+                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
                     } else
                     {
-                        spriteBatch.Draw(tileSpriteRed, position, Color.White);
+                        spriteBatch.Draw(tileSpriteRed,
+                                         position,
+                                         null,
+                                         Color.White,
+                                         0,
+                                         Vector2.Zero,
+                                         Vector2.One,
+                                         SpriteEffects.None,
+                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
                     }
                 }
             }

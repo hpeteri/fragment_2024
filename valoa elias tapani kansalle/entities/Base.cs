@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,6 +9,26 @@ using Microsoft.Xna.Framework.Graphics;
 
 
 namespace valoa_elias_tapani_kansalle.entities {
+    public enum EntityLayer {
+        ENTITY_LAYER_BACKGROUND = 0,
+        ENTITY_LAYER_LEVEL = 1,
+        ENTITY_LAYER_PLAYER = 2,
+        ENTITY_LAYER_INTERACTABLE = 3,
+        ENTITY_LAYER_FOREGROUND = 4,
+        ENTITY_LAYER_UI = 5,
+        ENTITY_LAYER_COUNT
+    }
+
+    public class EntityUtil
+    {
+        /* Returns EntityLayer from 0.0f - 1.0f */
+        public static float GetEntityLayer(
+            EntityLayer  layer)
+        {
+            return (float)layer / (float)EntityLayer.ENTITY_LAYER_COUNT;
+        }
+    }
+    
     public class BaseEntitity {
 
         private Vector2 position;
