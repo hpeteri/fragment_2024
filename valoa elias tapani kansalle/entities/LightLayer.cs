@@ -24,7 +24,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public void UpdateTorchBeam(
             GraphicsDevice graphicsDevice,
             Vector2 position,
-            Vector2 direction)
+            float facing)
         {
             var oldTarget = graphicsDevice.GetRenderTargets();
 
@@ -32,12 +32,38 @@ namespace valoa_elias_tapani_kansalle.entities
             graphicsDevice.Clear(new Color(0, 0, 0, 220));
 
             graphicsDevice.BlendState = BlendState.Opaque;
- 
+
+            Vector3 origin = new Vector3(
+                (position.X - graphicsDevice.Viewport.Width * 0.5f) / (float)graphicsDevice.Viewport.Width * 2.0f,
+                (position.Y - graphicsDevice.Viewport.Height * 0.5f) / (float)graphicsDevice.Viewport.Height * 2.0f,
+                0.0f);
+
+
+            Vector2 toMousePos =
+                Vector2.Normalize(new Vector2(Mouse.GetState().X, Mouse.GetState().Y) - position);
+
+            Vector2 toSide = new Vector2(toMousePos.Y, -toMousePos.X);
+            if (toSide.X == 0 && toSide.Y == 0)
+            {
+                toSide.X = 1;
+            }
+
+            
+            Vector3 side0 = new Vector3(
+                (position.X + toMousePos.X * 200 + toSide.X * 64 - graphicsDevice.Viewport.Width * 0.5f) / (float)graphicsDevice.Viewport.Width * 2.0f,
+                (position.Y + toMousePos.Y * 200 + toSide.Y * 64 - graphicsDevice.Viewport.Height * 0.5f) / (float)graphicsDevice.Viewport.Height * 2.0f,
+                0.0f);
+            
+            Vector3 side1 = new Vector3(
+                (position.X + toMousePos.X * 200 - toSide.X * 64 - graphicsDevice.Viewport.Width * 0.5f) / (float)graphicsDevice.Viewport.Width * 2.0f,
+                (position.Y + toMousePos.Y * 200 - toSide.Y * 64 - graphicsDevice.Viewport.Height * 0.5f) / (float)graphicsDevice.Viewport.Height * 2.0f,
+                0.0f);
+                        
             var vertices = new VertexPositionColor[3]
             {
-                new VertexPositionColor(new Vector3(0, 1, 0f), new Color(0,0,0,0)),    // Top vertex (Red)
-                new VertexPositionColor(new Vector3(-1, -1, 0f), new Color(0,0,0,0)), // Bottom left vertex (Green)
-                new VertexPositionColor(new Vector3(1, -1, 0f), new Color(0,0,0,0))   // Bottom right vertex (Blue)
+                new VertexPositionColor(origin, new Color(0,0,0,0)),    // Top vertex (Red)
+                new VertexPositionColor(side0, new Color(0,0,0,0)), // Bottom left vertex (Green)
+                new VertexPositionColor(side1, new Color(0,0,0,0))   // Bottom right vertex (Blue)
             };
 
             // Use BasicEffect to set up simple rendering state (could be omitted if you want more control)
@@ -46,7 +72,7 @@ namespace valoa_elias_tapani_kansalle.entities
                 VertexColorEnabled = true, // Enable vertex color
                 World = Matrix.Identity,
                 View = Matrix.Identity,
-                Projection = Matrix.CreateOrthographicOffCenter(-1, 1, -1, 1, 0, 1) // Ortho projection for 2D
+                Projection = Matrix.CreateOrthographicOffCenter(-1, 1, 1, -1, 0, 1) // Ortho projection for 2D
             };
             
             VertexBuffer vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionColor), 3, BufferUsage.WriteOnly);  

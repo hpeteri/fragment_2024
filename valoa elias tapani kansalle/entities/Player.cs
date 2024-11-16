@@ -118,26 +118,30 @@ namespace valoa_elias_tapani_kansalle.entities
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public float GetFacingRotation()
         {
-            base.Draw(spriteBatch);
+
             MouseState mouseState = Mouse.GetState();
             Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
             Vector2 playerFacingDirection = Vector2.Normalize(mousePosition - Position);
 
+            return (float) System.Math.Atan2(playerFacingDirection.Y, playerFacingDirection.X) + (float)System.Math.PI / 2.0f;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
 
             spriteBatch.Draw(playerSprite,
                              Position,
                              sourceRectangle,
                              Color.White,
-                             (float) System.Math.Atan2(playerFacingDirection.Y, playerFacingDirection.X) + (float)System.Math.PI / 2.0f,
+                             GetFacingRotation(),
                              new Vector2(64, 64),
                              Vector2.One,
                              SpriteEffects.None,
                              EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
 
         }
-
-
     }
 }

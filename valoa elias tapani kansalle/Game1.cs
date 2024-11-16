@@ -147,8 +147,8 @@ namespace valoa_elias_tapani_kansalle
                     GraphicsDevice.Clear(Color.Cyan);
 
                     _lightLayer.UpdateTorchBeam(GraphicsDevice,
-                        Vector2.Zero,
-                        Vector2.One);
+                        player.Position,
+                        player.GetFacingRotation());
 
 
                     level.Draw(_spriteBatch);
