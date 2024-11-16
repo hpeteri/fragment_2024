@@ -18,6 +18,7 @@ namespace valoa_elias_tapani_kansalle.entities
     {
         private char[,] tiles;
         private int gridSize = 64;
+        private Wall[] walls;
         public ContentManager content;
         private Texture2D tileSpriteBlue;
         private Texture2D tileSpriteRed;
@@ -81,6 +82,8 @@ namespace valoa_elias_tapani_kansalle.entities
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
+            walls = new Wall[tiles.GetLength(0) * tiles.GetLength(1)];
+            int index = 0;
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
@@ -99,16 +102,23 @@ namespace valoa_elias_tapani_kansalle.entities
                                          EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
                     } else
                     {
-                        spriteBatch.Draw(tileSpriteRed,
-                                         position,
-                                         null,
-                                         Color.White,
-                                         0,
-                                         Vector2.Zero,
-                                         Vector2.One,
-                                         SpriteEffects.None,
-                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
+                        // Add walls
+                        walls[index] = new Wall(position, gridSize, gridSize);
+                        index += 1;
                     }
+                }
+
+            }
+            // Draw walls
+            foreach (Wall wall in walls)
+            {
+                if (wall != null)
+                {
+                    wall.LoadContent(content);
+                    wall.Draw(spriteBatch);
+                } else
+                {
+                    break;
                 }
             }
         }
