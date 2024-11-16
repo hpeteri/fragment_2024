@@ -107,16 +107,15 @@ namespace valoa_elias_tapani_kansalle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
             
+            _spriteBatch.Begin();
             switch (_programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
                     GraphicsDevice.Clear(Color.Cyan);
-
+                    
                     player.Draw(_spriteBatch);
-                    level.Draw(_spriteBatch);
-                    _spriteBatch.End();
+                    //level.Draw(_spriteBatch);
 
                     break;
 
