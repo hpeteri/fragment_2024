@@ -50,10 +50,6 @@ namespace valoa_elias_tapani_kansalle
             _mainMenu = new MainMenu();
             player = new Player();
 
-            // Load level
-            string levelPath = string.Format("Content/levels/level1.txt");
-            fileStream = TitleContainer.OpenStream(levelPath);
-            level = new Level(fileStream, Services);
             
             // Set fullscreen
             _graphics.IsFullScreen = false;
@@ -73,11 +69,14 @@ namespace valoa_elias_tapani_kansalle
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(Content);
             _mainMenu.LoadContent(Content);
-            level.LoadContent(Content);
 
             _lightLayer = new LightLayer(GraphicsDevice);
             
-            // TODO: use this.Content to load your game content here
+            // Load level
+            string levelPath = string.Format("Content/levels/level1.txt");
+            fileStream = TitleContainer.OpenStream(levelPath);
+            level = new Level(fileStream, Services);
+            level.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
