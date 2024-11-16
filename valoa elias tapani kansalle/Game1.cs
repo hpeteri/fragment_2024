@@ -36,10 +36,12 @@ namespace valoa_elias_tapani_kansalle
         private Player player;
         private Level level;
         private Stream fileStream;
+        private LightLayer _lightLayer;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
@@ -52,7 +54,7 @@ namespace valoa_elias_tapani_kansalle
             string levelPath = string.Format("Content/levels/level1.txt");
             fileStream = TitleContainer.OpenStream(levelPath);
             level = new Level(fileStream, Services);
-
+            
             // Set fullscreen
             _graphics.IsFullScreen = false;
         }
@@ -63,9 +65,7 @@ namespace valoa_elias_tapani_kansalle
 
             base.Initialize();
 
-            Input.Initialize();
-            IsMouseVisible = false;
-            
+            Input.Initialize();           
         }
 
         protected override void LoadContent()
@@ -75,13 +75,16 @@ namespace valoa_elias_tapani_kansalle
             _mainMenu.LoadContent(Content);
             level.LoadContent(Content);
 
+            _lightLayer = new LightLayer(GraphicsDevice);
+            
             // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
             Input.Update();
-            
+
+            GraphicsDevice.SetRenderTarget(null);
 
             switch (_gameState.programMode)
             {
@@ -132,10 +135,25 @@ namespace valoa_elias_tapani_kansalle
             switch (_gameState.programMode)
             {
                 case ProgramMode.PROGRAM_MODE_GAME:
+
+                    /**
+                     * Render targets get cleared when bound, so
+                     * UpdateTorchBeam renders to an offscreen
+                     * rendertarget first and then binds the default
+                     * render target.
+                     *
+                     *
+                     */
                     GraphicsDevice.Clear(Color.Cyan);
-                    
+
+                    _lightLayer.UpdateTorchBeam(GraphicsDevice,
+                        Vector2.Zero,
+                        Vector2.One);
+
+
                     level.Draw(_spriteBatch);
                     player.Draw(_spriteBatch);
+                    _lightLayer.Draw(_spriteBatch);
 
                     break;
 
