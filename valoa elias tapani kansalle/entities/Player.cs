@@ -131,22 +131,10 @@ namespace valoa_elias_tapani_kansalle.entities
                              sourceRectangle,
                              Color.White,
                              (float) System.Math.Atan2(playerFacingDirection.Y, playerFacingDirection.X) + (float)System.Math.PI / 2.0f,
-                             Vector2.Zero,
+                             new Vector2(64, 64),
                              Vector2.One,
                              SpriteEffects.None,
                              EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
-
-            spriteBatch.Draw(temp,
-                             Position,
-                             null,
-                             Color.White,
-                             0,
-                             Vector2.Zero,
-                             Vector2.One,
-                             SpriteEffects.None,
-                             EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
-            
-
 
         }
 
