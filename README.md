@@ -99,8 +99,6 @@ tehdas rakennus, varasto, '
 - varjot
 ## muut 
 - outline itemeissä
-- start menu
-- pause menu
 - setting
   - äänet - on, off, voimakkuus
 
