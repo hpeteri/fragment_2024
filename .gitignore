@@ -5,4 +5,7 @@ valoa elias tapani kansalle/Content/bin/DesktopGL/MenuFont.xnb
 valoa elias tapani kansalle/Content/obj/DesktopGL/net8.0/Content/.mgcontent
 valoa elias tapani kansalle/Content/obj/DesktopGL/net8.0/Content/MenuFont.mgcontent
 valoa elias tapani kansalle/Content/bin/DesktopGL/Content/MenuFont.xnb
-valoa elias tapani kansalle/Content/obj/*
+*.xnb
+*.mgcontent
+
+
