@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.IO;
+using System.IO.Pipes;
+using System.Text;
 using valoa_elias_tapani_kansalle.entities;
 
 namespace valoa_elias_tapani_kansalle
@@ -20,6 +24,8 @@ namespace valoa_elias_tapani_kansalle
 
         private MainMenu _mainMenu;
         private Player player;
+        private Level level;
+        private Stream fileStream;
 
         public Game1()
         {
@@ -31,8 +37,13 @@ namespace valoa_elias_tapani_kansalle
 
             _mainMenu = new MainMenu();
             player = new Player();
-            //_graphics.IsFullScreen = true;
 
+            // Load level
+            string levelPath = string.Format("Content/levels/level1.txt");
+            fileStream = TitleContainer.OpenStream(levelPath);    
+
+            // Set fullscreen
+            _graphics.IsFullScreen = false;
         }
 
         protected override void Initialize()
@@ -52,7 +63,7 @@ namespace valoa_elias_tapani_kansalle
             player.LoadContent(Content);
             _mainMenu.LoadContent(Content);
 
-        // TODO: use this.Content to load your game content here
+            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -103,6 +114,8 @@ namespace valoa_elias_tapani_kansalle
                     GraphicsDevice.Clear(Color.Cyan);
 
                     player.Draw(_spriteBatch);
+                    level.Draw(_spriteBatch);
+                    _spriteBatch.End();
 
                     break;
 
