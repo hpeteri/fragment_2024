@@ -7,10 +7,9 @@ using valoa_elias_tapani_kansalle.collision;
 
 namespace valoa_elias_tapani_kansalle.entities
 {
-    public class Player : BaseEntitity
+    public class Player : GameObject
     { 
         private Texture2D playerSprite;
-        private CollisionShapeRectangle collisionShape;
         private Texture2D temp;
 
         public Vector2 Velocity { get; private set; }
@@ -36,13 +35,12 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             Speed = 300f;
             Position = new Vector2(300f, 300f);
-            collisionShape = new CollisionShapeRectangle(new Rectangle(64, 64, 64, 64));
-            this.frameWidth = 128;
-            this.frameHeight = 128;
-            this.totalFrames = 6;
+            frameWidth = 128;
+            frameHeight = 128;
+            totalFrames = 6;
             currentFrame = 0;
             animationTimer = 0;
-            sourceRectangle = new Rectangle(0, 0, this.frameWidth, this.frameHeight);
+            sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
         }
 
 
