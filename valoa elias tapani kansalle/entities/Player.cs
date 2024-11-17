@@ -23,6 +23,11 @@ namespace valoa_elias_tapani_kansalle.entities
         private double animationTimer;
         private double frameTime = 0.1; // time in seconds between frames
         private Rectangle sourceRectangle;
+        private Vector2 previousPosition;
+
+
+        // debug texture used for drawing bounding box around player
+        public Texture2D DebugTexture { get; set; }
 
 
         public Texture2D PlayerSprite
@@ -41,6 +46,12 @@ namespace valoa_elias_tapani_kansalle.entities
             currentFrame = 0;
             animationTimer = 0;
             sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, frameWidth, frameHeight);
+            IsCollisionActive = true;
+
+            //FIXME: scuffed way of ensuring boudingbox update works correctly
+            Width = frameWidth;
+            Height = frameHeight;
         }
 
 
@@ -74,7 +85,16 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void LoadContent(ContentManager content)
         {
             PlayerSprite = content.Load<Texture2D>("sprites/lamp_walk_bw");
-            temp = content.Load<Texture2D>("ball");
+        }
+
+        public override void OnCollision(GameObject collideObject)
+        {
+            base.OnCollision(collideObject);
+            if( collideObject is Wall )
+            {
+               Position = previousPosition; 
+            }
+
         }
 
         public override void Update(GameTime gameTime)
@@ -84,7 +104,12 @@ namespace valoa_elias_tapani_kansalle.entities
             float updatedSpeed = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             Vector2 inputDirection = GetMovementDirection();
+            previousPosition = Position;
             Position += inputDirection * updatedSpeed;
+
+
+
+            UpdateBoundingBox();
 
             isMoving = inputDirection != Vector2.Zero;
             if (isMoving)
@@ -140,6 +165,11 @@ namespace valoa_elias_tapani_kansalle.entities
                              SpriteEffects.None,
                              EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
 
+            //uncomment if collision is necessary to debug
+            spriteBatch.Draw(DebugTexture,
+                             BoundingBox,
+                             Color.White);
+            
         }
     }
 }

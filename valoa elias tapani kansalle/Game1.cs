@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Pipes;
 using System.Text;
+using valoa_elias_tapani_kansalle.collision;
 using valoa_elias_tapani_kansalle.entities;
 
 namespace valoa_elias_tapani_kansalle
@@ -37,6 +39,9 @@ namespace valoa_elias_tapani_kansalle
         private Level level;
         private Stream fileStream;
         private LightLayer _lightLayer;
+        private GameObject[] gameObjects;
+
+        private Texture2D debugTexture;
 
         public Game1()
         {
@@ -71,12 +76,20 @@ namespace valoa_elias_tapani_kansalle
             _mainMenu.LoadContent(Content);
 
             _lightLayer = new LightLayer(GraphicsDevice);
+
+
+            // create debugTexture for object
+            debugTexture = new Texture2D(GraphicsDevice, 1, 1);
+            debugTexture.SetData([Color.White]);
+            player.DebugTexture = debugTexture;
             
             // Load level
             string levelPath = string.Format("Content/levels/level1.txt");
             fileStream = TitleContainer.OpenStream(levelPath);
             level = new Level(fileStream, Services);
             level.LoadContent(Content);
+
+            gameObjects = level.Walls;
         }
 
         protected override void Update(GameTime gameTime)
@@ -98,6 +111,15 @@ namespace valoa_elias_tapani_kansalle
                     }
 
                     level.Update(gameTime, player);
+
+                    // testing collision system
+                    var collidedObject = CollisionSystem.IsColliding(player, gameObjects);
+                    if( collidedObject != null )
+                    {
+                        //Console.WriteLine($"Player collided with {collidedObject}");
+                        player.OnCollision(collidedObject);
+                        Console.WriteLine("Collision is happening!");
+                    }
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
