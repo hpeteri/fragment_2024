@@ -6,31 +6,31 @@ using System;
 
 namespace valoa_elias_tapani_kansalle.entities
 {
-    public class Door : Interactable
+    public class Key : Interactable
     {
-        private bool open;
-        private Texture2D _door;
-        public Texture2D _Door
+        private bool attachToPlayer;
+        private Texture2D _key;
+        public Texture2D _Key
         {
-            get { return _door; }
-            set { _door = value; }
+            get { return _key; }
+            set { _key = value; }
         }
-
-        public Door(Vector2 pos)
+        public Key(Vector2 pos)
         {
             Position = pos;
+            attachToPlayer = false;
             interactable = true;
         }
         public override void LoadContent(ContentManager content)
         {
-            _door = content.Load<Texture2D>("sprites/door");
+            _key = content.Load<Texture2D>("sprites/key");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!open)
+            if (!attachToPlayer)
             {
-                spriteBatch.Draw(_door,
+                spriteBatch.Draw(_key,
                                  Position,
                                  null,
                                  Color.White,
@@ -45,12 +45,33 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void Update(GameTime gameTime, Player player)
         {
             base.Update(gameTime);
-            if (Input.IsKeyPressed(Keys.F) && player.itemHeld == "key")
+            if (Input.IsKeyPressed(Keys.F))
             {
                 if (canInteract(player))
                 {
+                    player.itemHeld = "key";
+                    attachToPlayer = true;
+                }
+            }
+
+            if (attachToPlayer)
+            {
+                if (player.itemHeld == null)
+                {
+                    Position = new Vector2(-9999, -9999);
+                    attachToPlayer = false;
+                }
+                Position = player.Position;
+                if (Input.IsKeyPressed(Keys.F))
+                {
+                    System.Diagnostics.Debug.WriteLine("Attached");
+                }
+                if (Input.IsKeyPressed(Keys.G))
+                {
+                    System.Diagnostics.Debug.WriteLine("Dropping");
+                    attachToPlayer = false;
                     player.itemHeld = null;
-                    open = true;
+
                 }
             }
         }

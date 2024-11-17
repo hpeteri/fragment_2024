@@ -60,17 +60,22 @@ namespace valoa_elias_tapani_kansalle.entities
             if (Input.IsKeyPressed(Keys.F))
             {
                 System.Diagnostics.Debug.WriteLine(String.Format("Distance {0} Angle to {1}", distance, MathHelper.ToDegrees(dotProduct)));
-                if (canInteract(player))
+                if (canInteract(player) && player.itemHeld == null)
                 {
                     attachToPlayer = true;
+                    player.itemHeld = "screwdriver";
                 }
             }
 
             if (attachToPlayer)
             {
+                if (player.itemHeld == null)
+                {
+                    Position = new Vector2(-9999, -9999);
+                    attachToPlayer = false;
+                }
                 Position = player.Position;
                 System.Diagnostics.Debug.WriteLine($"Item Position Updated: {Position}");
-                player.itemHeld = "screwdriver";
                 if (Input.IsKeyPressed(Keys.F))
                 {
                     System.Diagnostics.Debug.WriteLine("Attached");
