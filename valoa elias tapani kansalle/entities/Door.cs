@@ -35,8 +35,8 @@ namespace valoa_elias_tapani_kansalle.entities
                                  null,
                                  Color.White,
                                  0,
-                                 new Vector2(16, 16),
-                                 new Vector2(2, 2),
+                                 Vector2.Zero,
+                                 Vector2.One,
                                  SpriteEffects.None,
                                  EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
             }

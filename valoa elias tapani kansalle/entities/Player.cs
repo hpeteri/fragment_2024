@@ -84,7 +84,7 @@ namespace valoa_elias_tapani_kansalle.entities
 
         public override void LoadContent(ContentManager content)
         {
-            PlayerSprite = content.Load<Texture2D>("sprites/lamp_walk_bw");
+            PlayerSprite = content.Load<Texture2D>("sprites/lamp_walk");
         }
 
         public override void OnCollision(GameObject collideObject)
