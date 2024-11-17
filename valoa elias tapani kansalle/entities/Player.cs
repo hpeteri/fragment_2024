@@ -39,7 +39,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public Player()
         {
             Speed = 300f;
-            Position = new Vector2(300f, 300f);
+            Position = new Vector2(600f, 300f);
             frameWidth = 128;
             frameHeight = 128;
             totalFrames = 6;
