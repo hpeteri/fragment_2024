@@ -125,12 +125,24 @@ namespace valoa_elias_tapani_kansalle.entities
                 {
                     
                     Vector2 position = new Vector2(i * gridSize, j * gridSize); 
-                    if (tiles[i, j] == 'i')
+                    if (tiles[i, j] == 'i') // Screwdriver
                     {
-                        // Add interactables
                         Screwdriver screwDriver = new Screwdriver(position);
                         screwDriver.LoadContent(content);
                         interactables[interactablesIndex] = screwDriver;
+                        interactablesIndex += 1;
+                    } else if (tiles[i, j] == 'k') // Key
+                    {
+                        Key key = new Key(position);
+                        key.LoadContent(content);
+                        interactables[interactablesIndex] = key;
+                        interactablesIndex += 1;
+                        
+                    } else if (tiles[i, j] == 'd') // Door
+                    {
+                        Door door = new Door(position);
+                        door.LoadContent(content);
+                        interactables[interactablesIndex] = door;
                         interactablesIndex += 1;
                     }
                     else if (tiles[i, j] != '0')
