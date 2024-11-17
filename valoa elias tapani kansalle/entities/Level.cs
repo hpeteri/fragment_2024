@@ -18,12 +18,18 @@ namespace valoa_elias_tapani_kansalle.entities
     internal class Level
     {
         private char[,] tiles;
-        private int gridSize = 64;
+        private int gridSize = 128;
         private Wall[] walls;
         private Interactable[] interactables;
         public ContentManager content;
+
+        #region sprites
         private Texture2D tileSpriteBlue;
         private Texture2D tileSpriteRed;
+        private Texture2D wallSprite;
+        private Texture2D wallEdgeSprite;
+        private Texture2D wallCornerSprite;
+        private Texture2D floorSprite;
         public Texture2D TileSpriteBlue
         {
             get { return tileSpriteBlue; }
@@ -34,6 +40,28 @@ namespace valoa_elias_tapani_kansalle.entities
             get { return tileSpriteRed; }
             set { tileSpriteRed = value; }
         }
+        public Texture2D WallSprite
+        {
+            get { return wallSprite; }
+            set { wallSprite = value; }
+        }
+        public Texture2D WallEdgeSprite
+        {
+            get { return wallEdgeSprite; }
+            set { wallEdgeSprite = value; }
+        }
+        public Texture2D WallCornerSprite
+        {
+            get { return wallCornerSprite; }
+            set { wallCornerSprite = value; }
+        }
+        public Texture2D FloorSprite
+        {
+            get { return floorSprite; }
+            set { floorSprite = value; }
+        }
+        #endregion
+
         public Wall[] Walls 
         {
             get { return walls; }
@@ -54,6 +82,7 @@ namespace valoa_elias_tapani_kansalle.entities
             // Textures
             tileSpriteBlue = content.Load<Texture2D>("sprites/TestSquareBlue");
             tileSpriteRed = content.Load<Texture2D>("sprites/TestSquareRed");
+            floorSprite = content.Load<Texture2D>("sprites/floor");
         }
 
         // Load tiles
@@ -104,10 +133,10 @@ namespace valoa_elias_tapani_kansalle.entities
                         interactables[interactablesIndex] = screwDriver;
                         interactablesIndex += 1;
                     }
-                    else if (tiles[i, j] == '1')
+                    else if (tiles[i, j] != '0')
                     {
                         // Add walls
-                        walls[wallsIndex] = new Wall(position, gridSize, gridSize);
+                        walls[wallsIndex] = new Wall(position, gridSize, gridSize, tiles[i,j]);
                         
                         walls[wallsIndex].LoadContent(content);
                         wallsIndex += 1;
@@ -124,34 +153,24 @@ namespace valoa_elias_tapani_kansalle.entities
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
-                    if (tiles[i, j] == '0')
+                    Rectangle targetRect = new Rectangle((int)position.X, (int)position.Y, gridSize, gridSize);
+                    // Draw floor (yes, even under interactables)
+                    if (tiles[i, j] == '0' || tiles[i, j] == 'i')
                     {
-                        spriteBatch.Draw(tileSpriteBlue,
+                        
+                        spriteBatch.Draw(floorSprite,
                                          position,
-                                         null,
+                                         targetRect,
                                          Color.White,
                                          0,
                                          Vector2.Zero,
                                          Vector2.One,
                                          SpriteEffects.None,
-                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_BACKGROUND)); 
-                    }
-                    else if (tiles[i, j] == 'i')
-                    {
-                        // Add interactables
-                        spriteBatch.Draw(tileSpriteBlue,
-                                         position,
-                                         null,
-                                         Color.White,
-                                         0,
-                                         Vector2.Zero,
-                                         Vector2.One,
-                                         SpriteEffects.None,
-                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
+                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL)); 
                     }
                 }
-
             }
+
 
             // Draw walls
             foreach (Wall wall in walls)

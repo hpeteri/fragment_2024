@@ -19,6 +19,7 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             Position = pos;
             attachToPlayer = false;
+            interactable = true;
         }
         public override void LoadContent(ContentManager content)
         {

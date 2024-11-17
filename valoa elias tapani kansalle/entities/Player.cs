@@ -25,7 +25,6 @@ namespace valoa_elias_tapani_kansalle.entities
         private Rectangle sourceRectangle;
         private Vector2 previousPosition;
 
-
         // debug texture used for drawing bounding box around player
         public Texture2D DebugTexture { get; set; }
 
@@ -168,8 +167,7 @@ namespace valoa_elias_tapani_kansalle.entities
             //uncomment if collision is necessary to debug
             spriteBatch.Draw(DebugTexture,
                              BoundingBox,
-                             Color.White);
-            
+                             Color.White);         
         }
     }
 }

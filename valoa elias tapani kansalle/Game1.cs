@@ -178,6 +178,7 @@ namespace valoa_elias_tapani_kansalle
                     player.Draw(_spriteBatch);
                     _lightLayer.Draw(_spriteBatch);
 
+
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:

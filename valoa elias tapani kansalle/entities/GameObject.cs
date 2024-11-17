@@ -13,6 +13,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public int Height { get; set; }
 
         public bool IsCollisionActive { get; set; }
+        public bool interactable;
 
         public void UpdateBoundingBox()
         {
