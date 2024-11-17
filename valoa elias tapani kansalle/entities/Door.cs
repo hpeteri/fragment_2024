@@ -16,6 +16,8 @@ namespace valoa_elias_tapani_kansalle.entities
             set { _door = value; }
         }
 
+
+        public Texture2D DebugTexture { get; set; }
         public Door(Vector2 pos)
         {
             Position = pos;
@@ -24,6 +26,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void LoadContent(ContentManager content)
         {
             _door = content.Load<Texture2D>("sprites/door");
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, _door.Width, _door.Height);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -39,6 +42,8 @@ namespace valoa_elias_tapani_kansalle.entities
                                  Vector2.One,
                                  SpriteEffects.None,
                                  EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
+
+                spriteBatch.Draw(DebugTexture, BoundingBox, Color.White);
             }
         }
 

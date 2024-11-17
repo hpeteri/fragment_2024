@@ -30,6 +30,8 @@ namespace valoa_elias_tapani_kansalle.entities
         private Texture2D wallEdgeSprite;
         private Texture2D wallCornerSprite;
         private Texture2D floorSprite;
+
+        public Texture2D DebugTexture { get; set; }
         public Texture2D TileSpriteBlue
         {
             get { return tileSpriteBlue; }
@@ -68,10 +70,23 @@ namespace valoa_elias_tapani_kansalle.entities
             set { walls = value; }
         }
 
+        public Interactable[] Interactables
+        {
+            get { return interactables; }
+            set { interactables = value; }
+        }
+
         // Constructor
         public Level(Stream fileStream, IServiceProvider serviceProvider)
         {
             // Load textures
+            content = new ContentManager(serviceProvider, "Content");
+            LoadTiles(fileStream);
+        }
+
+        public Level(Stream fileStream, IServiceProvider serviceProvider, Texture2D debugTexture)
+        {
+            DebugTexture = debugTexture;
             content = new ContentManager(serviceProvider, "Content");
             LoadTiles(fileStream);
         }
@@ -141,6 +156,7 @@ namespace valoa_elias_tapani_kansalle.entities
                     } else if (tiles[i, j] == 'd') // Door
                     {
                         Door door = new Door(position);
+                        door.DebugTexture = DebugTexture;
                         door.LoadContent(content);
                         interactables[interactablesIndex] = door;
                         interactablesIndex += 1;

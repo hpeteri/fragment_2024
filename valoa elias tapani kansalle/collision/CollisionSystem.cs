@@ -23,6 +23,20 @@ namespace valoa_elias_tapani_kansalle.collision
             }
             return null;
         }
+
+        public static GameObject IsColliding(GameObject obj, List<GameObject> objects)
+        {
+            foreach(var otherObj in objects)
+            {
+                if( obj != null && otherObj != null &&
+                    otherObj.IsCollisionActive && obj.IsCollisionActive &&
+                    otherObj != obj && obj.BoundingBox.Intersects(otherObj.BoundingBox) ) 
+                {
+                    return otherObj;
+                }
+            }
+            return null;
+        }
     }
 }
 

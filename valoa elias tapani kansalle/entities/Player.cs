@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
 using valoa_elias_tapani_kansalle.collision;
+using System;
 
 namespace valoa_elias_tapani_kansalle.entities
 {
@@ -39,7 +40,7 @@ namespace valoa_elias_tapani_kansalle.entities
         public Player()
         {
             Speed = 300f;
-            Position = new Vector2(600f, 300f);
+            Position = new Vector2(300f, 300f);
             frameWidth = 128;
             frameHeight = 128;
             totalFrames = 6;
@@ -90,10 +91,12 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void OnCollision(GameObject collideObject)
         {
             base.OnCollision(collideObject);
-            if( collideObject is Wall )
+            if( collideObject is Wall)
             {
                Position = previousPosition; 
             }
+
+            Console.WriteLine(collideObject is Door);
 
         }
 
@@ -166,9 +169,9 @@ namespace valoa_elias_tapani_kansalle.entities
                              EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_PLAYER));
 
             //uncomment if collision is necessary to debug
-            spriteBatch.Draw(DebugTexture,
-                             BoundingBox,
-                             Color.White);         
+            //spriteBatch.Draw(DebugTexture,
+            //                 BoundingBox,
+            //                 Color.White);         
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Pipes;
@@ -87,10 +88,19 @@ namespace valoa_elias_tapani_kansalle
             // Load level
             string levelPath = string.Format("Content/levels/level1.txt");
             fileStream = TitleContainer.OpenStream(levelPath);
-            level = new Level(fileStream, Services);
+            level = new Level(fileStream, Services, debugTexture);
             level.LoadContent(Content);
 
-            gameObjects = level.Walls;
+
+            List<GameObject> gameObjectsList = [];
+            gameObjectsList.AddRange(level.Walls);
+            gameObjectsList.AddRange(level.Interactables);
+            gameObjects = [.. gameObjectsList];
+
+            foreach (var obj in gameObjects)
+            {
+                Console.WriteLine(obj);
+            }
 
             // Inventory
             inventorySlot.LoadContent(Content);
