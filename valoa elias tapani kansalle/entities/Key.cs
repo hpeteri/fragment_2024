@@ -47,7 +47,7 @@ namespace valoa_elias_tapani_kansalle.entities
             base.Update(gameTime);
             if (Input.IsKeyPressed(Keys.F))
             {
-                if (canInteract(player))
+                if (canInteract(player) && player.itemHeld == null)
                 {
                     player.itemHeld = "key";
                     attachToPlayer = true;
