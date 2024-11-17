@@ -34,13 +34,18 @@ namespace valoa_elias_tapani_kansalle.entities
             get { return tileSpriteRed; }
             set { tileSpriteRed = value; }
         }
+        public Wall[] Walls 
+        {
+            get { return walls; }
+            set { walls = value; }
+        }
 
         // Constructor
         public Level(Stream fileStream, IServiceProvider serviceProvider)
         {
             // Load textures
             content = new ContentManager(serviceProvider, "Content");
-            loadTiles(fileStream);
+            LoadTiles(fileStream);
         }
 
         // Load content
@@ -52,7 +57,7 @@ namespace valoa_elias_tapani_kansalle.entities
         }
 
         // Load tiles
-        private void loadTiles(Stream fileStream)
+        private void LoadTiles(Stream fileStream)
         {
 
             List<string> lines = new List<string>();
@@ -99,7 +104,7 @@ namespace valoa_elias_tapani_kansalle.entities
                         interactables[interactablesIndex] = screwDriver;
                         interactablesIndex += 1;
                     }
-                    else if (tiles[i, j] == '0')
+                    else if (tiles[i, j] == '1')
                     {
                         // Add walls
                         walls[wallsIndex] = new Wall(position, gridSize, gridSize);
@@ -114,14 +119,12 @@ namespace valoa_elias_tapani_kansalle.entities
         // Draw tiles
         public void Draw(SpriteBatch spriteBatch)
         {
-            int wallsIndex = 0;
-            int interactablesIndex = 0;
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
-                    if (tiles[i, j] == '1')
+                    if (tiles[i, j] == '0')
                     {
                         spriteBatch.Draw(tileSpriteBlue,
                                          position,
@@ -131,7 +134,7 @@ namespace valoa_elias_tapani_kansalle.entities
                                          Vector2.Zero,
                                          Vector2.One,
                                          SpriteEffects.None,
-                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_LEVEL));
+                                         EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_BACKGROUND)); 
                     }
                     else if (tiles[i, j] == 'i')
                     {

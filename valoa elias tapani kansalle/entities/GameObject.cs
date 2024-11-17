@@ -8,16 +8,19 @@ namespace valoa_elias_tapani_kansalle.entities
 {
     public class GameObject : BaseEntitity
     {
-        private Rectangle boundingBox; // Used for collision detection
-        private int width;
-        private int height;
         public Rectangle BoundingBox { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public bool IsCollisionActive { get; set; }
+
         public void UpdateBoundingBox()
         {
-            BoundingBox = new Rectangle( (int)Position.X, (int)Position.Y, Width, Height );
+            BoundingBox = new Rectangle( (int)Position.X-Width/4, (int)Position.Y-Height/3, Width/2, Height-Height/4 );
+        }
+
+        public virtual void OnCollision(GameObject collideObject)
+        {
 
         }
     }
