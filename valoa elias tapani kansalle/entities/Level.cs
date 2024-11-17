@@ -183,7 +183,10 @@ namespace valoa_elias_tapani_kansalle.entities
                     Vector2 position = new Vector2(i * gridSize, j * gridSize);
                     Rectangle targetRect = new Rectangle((int)position.X, (int)position.Y, gridSize, gridSize);
                     // Draw floor (yes, even under interactables)
-                    if (tiles[i, j] == '0' || tiles[i, j] == 'i')
+                    if (tiles[i, j] == '0' || 
+                        tiles[i, j] == 'i' || 
+                        tiles[i, j] == 'k' ||
+                        tiles[i, j] == 'd')
                     {
                         
                         spriteBatch.Draw(floorSprite,
