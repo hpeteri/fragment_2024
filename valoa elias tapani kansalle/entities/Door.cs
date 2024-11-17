@@ -15,10 +15,10 @@ namespace valoa_elias_tapani_kansalle.entities
             get { return _door; }
             set { _door = value; }
         }
+
         public Door(Vector2 pos)
         {
             Position = pos;
-            attachToPlayer = false;
             interactable = true;
         }
         public override void LoadContent(ContentManager content)
