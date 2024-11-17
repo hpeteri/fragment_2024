@@ -67,6 +67,7 @@ namespace valoa_elias_tapani_kansalle.entities
             {
                 Position = player.Position;
                 System.Diagnostics.Debug.WriteLine($"Item Position Updated: {Position}");
+                player.itemHeld = "screwdriver";
                 if (Input.IsKeyPressed(Keys.F))
                 {
                     System.Diagnostics.Debug.WriteLine("Attached");
@@ -75,6 +76,8 @@ namespace valoa_elias_tapani_kansalle.entities
                 {
                     System.Diagnostics.Debug.WriteLine("Dropping");
                     attachToPlayer = false;
+                    player.itemHeld = null;
+
                 }
             }
         }

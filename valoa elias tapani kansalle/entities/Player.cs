@@ -16,6 +16,7 @@ namespace valoa_elias_tapani_kansalle.entities
 
         // Animation
         private bool isMoving;
+        public string itemHeld;
         private int frameWidth;
         private int frameHeight;
         private int totalFrames;

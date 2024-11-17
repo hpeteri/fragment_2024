@@ -40,6 +40,7 @@ namespace valoa_elias_tapani_kansalle
         private Stream fileStream;
         private LightLayer _lightLayer;
         private GameObject[] gameObjects;
+        private InventorySlot inventorySlot;
 
         private Texture2D debugTexture;
 
@@ -54,8 +55,8 @@ namespace valoa_elias_tapani_kansalle
 
             _mainMenu = new MainMenu();
             player = new Player();
+            inventorySlot = new InventorySlot(0, 0);
 
-            
             // Set fullscreen
             _graphics.IsFullScreen = false;
         }
@@ -90,6 +91,10 @@ namespace valoa_elias_tapani_kansalle
             level.LoadContent(Content);
 
             gameObjects = level.Walls;
+
+            // Inventory
+            inventorySlot.LoadContent(Content);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -177,8 +182,8 @@ namespace valoa_elias_tapani_kansalle
                     level.Draw(_spriteBatch);
                     player.Draw(_spriteBatch);
                     _lightLayer.Draw(_spriteBatch);
-
-
+                    inventorySlot.Draw(_spriteBatch);
+                    inventorySlot.DrawItem(_spriteBatch, player.itemHeld);
                     break;
 
                 case ProgramMode.PROGRAM_MODE_MENU:
