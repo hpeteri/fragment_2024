@@ -1,0 +1,13 @@
+Aamun tunnit eli neljästä eteenpäin alotin värkkäämällä systeemiä, jolla sais piilotettua interactable objektit jotka ei ole valokeilassa.
+Oliki ihan helvetisti monimutkasempaa ku oletin. Yksi yritys TorchBox luokan muodossa tuolla on kummittelemassa, mutta en jaksanut tehä sitä ihan loppuun.
+Ei siinä en kyllä usko että se nuin helpolla toimis.
+
+Sitten aattelin että vois yrittää ainaki Petran kovalla piirtämiä grafiikoita saada esille niin väsäsin Wall luokkaan switch case helvetin,
+joka vaihtaa spriteä ja pyörittää seinäpalasta sen mukaan mikä sen pitäs olla. Tää ei jostain syystä halua pelittää ja paljolti piirtää vaan mustia ruutuja.
+
+Tietysti täytyi muokata sitä miten tekstifiluun merkitään palikat niin lue se switch case helvetti niin siitä saa selville mitä merkinnät meinaa.
+
+Ai niin lattiat kans piirtyy nyt floor.png tekstuurilla. Siinä on semmonen että ku se tekstuuri on isompi mitä yksi gridin ruutu niin piti laittaa siihen target rectangle joka skaalaa
+tekstuurin oikeamman kokoseksi.
+
+Juuh eliccäs
