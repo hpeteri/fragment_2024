@@ -91,12 +91,11 @@ namespace valoa_elias_tapani_kansalle.entities
         public override void OnCollision(GameObject collideObject)
         {
             base.OnCollision(collideObject);
-            if( collideObject is Wall)
+            if( collideObject is Wall || collideObject is Door)
             {
                Position = previousPosition; 
             }
 
-            Console.WriteLine(collideObject is Door);
 
         }
 

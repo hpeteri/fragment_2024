@@ -22,6 +22,7 @@ namespace valoa_elias_tapani_kansalle.entities
         {
             Position = pos;
             interactable = true;
+            IsCollisionActive = true;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -56,6 +57,7 @@ namespace valoa_elias_tapani_kansalle.entities
                 {
                     player.itemHeld = null;
                     open = true;
+                    IsCollisionActive = false;
                 }
             }
         }
