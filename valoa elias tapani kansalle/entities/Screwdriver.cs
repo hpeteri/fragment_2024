@@ -28,15 +28,18 @@ namespace valoa_elias_tapani_kansalle.entities
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(screwdriver,
-                             Position,
-                             null,
-                             Color.White,
-                             0,
-                             new Vector2(16, 16),
-                             new Vector2(2, 2),
-                             SpriteEffects.None,
-                             EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
+            if (!attachToPlayer)
+            {
+                spriteBatch.Draw(screwdriver,
+                                 Position,
+                                 null,
+                                 Color.White,
+                                 0,
+                                 new Vector2(16, 16),
+                                 new Vector2(2, 2),
+                                 SpriteEffects.None,
+                                 EntityUtil.GetEntityLayer(EntityLayer.ENTITY_LAYER_INTERACTABLE));
+            }
         }
 
         public override void Update(GameTime gameTime, Player player)
